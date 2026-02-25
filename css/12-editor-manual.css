@@ -5,28 +5,29 @@
 /* --- Container Principal da Barra (Estado Maximizado) --- */
 #editor-toolbox {
     position: fixed;
-    bottom: 16px;
-    left: calc(var(--sidebar-width-collapsed) + 16px);
-    right: 16px;
-    height: 88px;
-    z-index: 100;
-    border-radius: 18px;
+    bottom: 24px;
+    left: calc(var(--sidebar-width-collapsed) + 32px);
+    right: 24px;
+    height: 88px; /* Mantido 88px conforme seu código */
+    z-index: 90;
+    
+    border-radius: 16px; /* Seu ajuste visual */
     display: flex;
     align-items: center;
-    padding: 8px;
-    gap: 8px;
+    padding: 4px 4px; /* Seu ajuste de espaçamento */
+    gap: 12px;
 
-    /* Efeito de Vidro */
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    /* Efeito de Vidro e Estilo Visual */
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
 
-    /* ANIMAÇÕES (CORRIGIDO) */
-    transition: all 0.4s ease-in-out;
-    transform-origin: right center;
-    transform: scale(1) translateX(0); /* Adicionado translateX */
+    /* Animações */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: bottom center;
+    transform: translateY(0) scale(1);
     opacity: 1;
 }
 

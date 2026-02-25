@@ -27,6 +27,22 @@ function hideExportModal() {
     currentEscalaToExport = null;
 }
 
+function showDownloadSuccessOverlay() {
+    const overlay = document.getElementById('download-success-overlay');
+    if (!overlay) return;
+
+    overlay.classList.remove('hidden');
+    void overlay.offsetWidth;
+    overlay.classList.add('visible');
+
+    setTimeout(() => {
+        overlay.classList.remove('visible');
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 500);
+    }, 3500);
+}
+
 function generateVisaoGeralPDF(escala) {
     if (!escala.snapshot) {
         const { funcionarios, turnos } = store.getState();
@@ -91,7 +107,7 @@ function generateVisaoGeralPDF(escala) {
     const dateRange = dateRangeInclusive(escala.inicio, escala.fim);
 
     doc.setFontSize(18);
-    doc.text(escala.nome, doc.internal.pageSize.getWidth() / 2, 40, { align: 'center' });
+    doc.text(escala.nome || 'Escala Sem Nome', doc.internal.pageSize.getWidth() / 2, 40, { align: 'center' });
     doc.setFontSize(10);
 
     const head = [['Funcionário', ...dateRange.map(date => {
@@ -184,7 +200,7 @@ function generateVisaoGeralPDF(escala) {
                     bgColor = turnoInfo.cor;
                     textColor = getContrastingTextColor(turnoInfo.cor) === '#FFFFFF' ? [255, 255, 255] : [0, 0, 0];
                     fontStyle = 'bold';
-                    text = turnoInfo.sigla;
+                    text = turnoInfo.sigla || '?';
                 } else if (feriadoFolga) {
                     bgColor = '#eef2ff';
                     textColor = [67, 56, 202];
@@ -432,7 +448,7 @@ function generateRelatorioDiarioPDF(escala) {
         doc.text('Escala Fácil', leftMargin, 40);
         doc.setFontSize(9);
         doc.setTextColor(100);
-        doc.text(escala.nome, rightMargin, 40, { align: 'right' });
+        doc.text(escala.nome || 'Relatório Diário', rightMargin, 40, { align: 'right' });
         doc.setLineWidth(1.5);
         doc.setDrawColor(230, 230, 230);
         doc.line(leftMargin, 55, rightMargin, 55);
@@ -512,9 +528,10 @@ function generateRelatorioDiarioPDF(escala) {
                     return;
                 }
 
+                const nomeTurno = turno.nome || 'Turno Removido';
                 const tituloTurno = (turno.isSystem || !turno.inicio)
-                    ? turno.nome
-                    : `${turno.nome} (${turno.inicio} - ${turno.fim})`;
+                    ? nomeTurno
+                    : `${nomeTurno} (${turno.inicio || '?'} - ${turno.fim || '?'})`;
 
                 const cardY = yPos;
 
@@ -864,14 +881,12 @@ async function initPdfExport() {
             try {
                 await exportAction(escala);
                 hideLoader();
-                setTimeout(() => {
-                    requestAnimationFrame(() => showDownloadToast(true));
-                }, 500);
+                showDownloadSuccessOverlay(); 
             } catch (e) {
                 console.error("Erro durante a exportação:", e);
                 hideLoader();
                 setTimeout(() => {
-                    requestAnimationFrame(() => showDownloadToast(false, e.message));
+                    showToast(e.message || "Erro na exportação", "error");
                 }, 500);
             }
         });
@@ -907,7 +922,10 @@ async function initPdfExport() {
             await new Promise(res => setTimeout(res, 50));
 
             const zipBlob = await zip.generateAsync({ type: "blob" });
-            triggerDownload(zipBlob, `export_escala_${nomeBase}.zip`);
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(zipBlob);
+            link.download = `pacote_escala_${nomeBase}.zip`;
+            link.click();
         });
     });
 }

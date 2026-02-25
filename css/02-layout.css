@@ -1,33 +1,66 @@
 :root {
-  --sidebar-width-collapsed: 72px;
-  --sidebar-width-expanded: 250px;
+  --sidebar-width-collapsed: 76px;
+  --sidebar-width-expanded: 260px;
   --header-height: 73px;
 }
 
 body {
   display: flex;
+  background-color: var(--bg);
 }
 
 #sidebar {
   width: var(--sidebar-width-collapsed);
-  height: 100vh;
+  height: calc(100vh - 32px);
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 16px;
+  left: 16px;
   display: flex;
   flex-direction: column;
-  padding: 8px;
-  background-color: rgba(255, 255, 255, 0.75);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(0,0,0,.05);
-  transition: width 0.3s ease-in-out;
-  z-index: 10;
+  padding: 20px 10px;
+  
+  background-color: rgba(255, 255, 255, 0.30); 
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 32px;
+  
+  /* ANIMAÇÃO DA SIDEBAR (SEPARADA E SUAVE) */
+  /* 0.7s deixa bem macio, sem ser lento demais */
+  transition: width 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              transform 0.5s ease, 
+              filter 0.5s ease;
+  z-index: 50;
+  
+  /* Garante que o texto não quebre layout enquanto anima */
+  overflow: hidden; 
+  white-space: nowrap; 
 }
 
 #sidebar:hover {
   width: var(--sidebar-width-expanded);
+}
+
+/* --- TRAVAMENTO ABSOLUTO DA SIDEBAR --- */
+/* Quando a ajuda está ativa, estas regras ganham prioridade máxima */
+body.help-panel-active #sidebar,
+body.help-panel-active #sidebar:hover {
+    pointer-events: none !important;      /* Mouse atravessa a sidebar */
+    width: var(--sidebar-width-collapsed) !important; /* Força largura pequena */
+    cursor: default !important;
+    background-color: rgba(255, 255, 255, 0.15) !important; /* Visualmente desativada */
+}
+
+/* Esconde textos imediatamente se travar */
+body.help-panel-active #sidebar .logo-full,
+body.help-panel-active #sidebar .tab-text {
+    opacity: 0 !important;
+    display: none !important;
+}
+body.help-panel-active #sidebar .logo-compact {
+    opacity: 1 !important;
 }
 
 .app-brand {
@@ -37,15 +70,14 @@ body {
   justify-content: center;
   text-decoration: none;
   font-weight: 700;
-  height: 42px;
-  padding-top: 8px;
-  padding-bottom: 24px;
+  height: 48px;
+  margin-bottom: 24px;
   position: relative;
 }
 
 .logo-compact, .logo-full {
   position: absolute;
-  top: 8px;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -55,33 +87,42 @@ body {
 }
 
 .logo-compact {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--brand);
   opacity: 1;
-  transition: opacity 0.2s ease-in-out 0.1s;
+  transition: opacity 0.3s ease 0.1s;
 }
 
 .logo-full {
   opacity: 0;
-  transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.2s ease;
 }
 
 #sidebar:hover .logo-full {
   opacity: 1;
-  transition: opacity 0.3s ease-in-out 0.2s;
+  /* Delay para o texto aparecer só depois que a barra abriu um pouco */
+  transition: opacity 0.4s ease 0.2s; 
 }
 
 #sidebar:hover .logo-compact {
   opacity: 0;
-  transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.2s ease;
 }
 
 .sidebar-links {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
   flex-grow: 1;
-  justify-content: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0;
+}
+
+.sidebar-links::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 
 #sidebar > .tab-btn[data-page="configuracoes"] {
@@ -107,18 +148,19 @@ main.container {
   flex-direction: column;
   position: relative;
   flex-grow: 1;
-  margin-left: var(--sidebar-width-collapsed);
+  margin-left: calc(var(--sidebar-width-collapsed) + 32px);
+  width: calc(100% - var(--sidebar-width-collapsed) - 32px);
   padding: 0;
   min-width: 0;
+  transition: margin-left 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.5s ease, filter 0.5s ease;
 }
 
 #main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 24px 16px 24px;
+    padding: 24px 32px 16px 32px;
     margin-bottom: 0;
-    border-bottom: 1px solid var(--border);
     height: var(--header-height);
     position: relative;
 }
@@ -160,6 +202,7 @@ main.container {
     justify-content: center;
     transition: all 0.2s ease-in-out;
 }
+
 .header-action-btn:hover {
     background-color: var(--bg);
     color: var(--fg);
@@ -170,7 +213,7 @@ main.container {
   display: none;
   flex-direction: column;
   gap: 24px;
-  padding: 24px 48px 12px 48px;
+  padding: 16px 32px 32px 32px;
   transition: padding 0.4s ease-in-out;
   min-width: 0;
 }
@@ -187,14 +230,14 @@ main.container {
 
 #page-home {
     padding-top: 24px;
-    padding-left: 48px;
-    padding-right: 48px;
+    padding-left: 32px;
+    padding-right: 32px;
 }
 
 #page-home.fading-out {
     padding-top: 24px;
-    padding-left: 48px;
-    padding-right: 48px;
+    padding-left: 32px;
+    padding-right: 32px;
 }
 
 .quick-metrics-panel {
@@ -203,7 +246,10 @@ main.container {
     align-items: center;
     padding: 12px 24px;
     margin-bottom: 24px;
-    background-color: rgba(238, 242, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    border: 1px solid var(--border);
 }
 
 .metrics-items {
@@ -232,7 +278,6 @@ main.container {
 .metrics-report-btn-wrapper {
     flex-shrink: 0;
 }
-
 
 #btn-goto-relatorios.metrics-report-btn {
     padding: 8px 16px;
@@ -431,7 +476,6 @@ main.container {
 .home-card-wrapper {
     opacity: 0;
     height: 100%;
-    /* ALTERADO: Removido 'transition: opacity' para evitar conflito com animation */
     transition: filter 0.3s;
     position: relative;
 }
@@ -461,11 +505,9 @@ main.container {
 }
 
 #page-home.active .home-card-wrapper {
-    /* ALTERADO: 'both' garante que o elemento assuma o estado 0% (invisível) durante o delay */
     animation: pop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-/* ORDEM E ATRASOS DE ANIMAÇÃO */
 #page-home.active .metrics-report-btn-wrapper { animation-delay: 0.05s; }
 #page-home.active .home-column-main .home-card-wrapper:nth-of-type(1) { animation-delay: 0.2s; }
 #page-home.active .home-column-main .home-card-wrapper:nth-of-type(2) { animation-delay: 0.3s; }
@@ -473,7 +515,6 @@ main.container {
 #page-home.active .home-side-grid .home-card-wrapper:nth-child(2) { animation-delay: 0.5s; }
 #page-home.active .home-side-grid .home-card-wrapper:nth-child(3) { animation-delay: 0.6s; }
 #page-home.active .home-side-grid .home-card-wrapper:nth-child(4) { animation-delay: 0.7s; }
-
 
 .grid-2-col, .grid-3-col, .grid-4-col {
     display: grid;

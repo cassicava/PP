@@ -206,10 +206,6 @@ function exibirTermosDeUso(requireScrollableConfirm = false) {
             <hr>
 
             <h4>10. Legislação e Foro</h4>
-            <p>Estes Termos são regidos pelas <strong>leis brasileiras</strong>. Fica eleito o foro da <strong>comarca de Pradópolis - SP</strong> como competente para resolver quaisquer controvérsias, com renúncia a qualquer outro.</p>
-            <hr>
-
-            <h4>11. Contato</h4>
             <p>Dúvidas sobre estes Termos podem ser enviadas para:<br>
             📩 escalafacil.contato@gmail.com</p>
         </div>

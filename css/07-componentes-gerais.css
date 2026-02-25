@@ -3,44 +3,48 @@
     background-color: transparent;
     width: 100%;
     border: none;
-    border-radius: 10px;
+    border-radius: 999px; 
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 4px;
+    gap: 12px; /* Reduzido levemente */
+    padding: 8px; /* Mais compacto */
     font-weight: 500;
     color: var(--muted);
-    transition: background-color 0.2s, color 0.2s, opacity 0.2s, filter 0.2s; /* Adicionado opacity e filter na transição */
+    transition: background-color 0.2s, color 0.2s, opacity 0.2s, filter 0.2s;
     overflow: hidden;
     position: relative;
-    transform: translateZ(0); /* Força aceleração de hardware para evitar glitch visual */
+    transform: translateZ(0);
+    margin-bottom: 4px;
 }
 
 .tab-btn:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.4); 
     color: var(--fg);
 }
 
 .tab-btn.active {
     color: var(--brand);
     font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .tab-btn.active .tab-icon {
     background-color: var(--brand);
     color: #fff;
+    box-shadow: none; /* REMOVIDA A SOMBRA */
+    transform: scale(1.05); /* Escala mais sutil */
 }
 
 .tab-btn .tab-icon {
-    font-size: 1.6rem;
-    min-width: 42px;
+    font-size: 1.6rem; /* Reduzido de 2rem para 1.6rem */
+    min-width: 42px; /* Reduzido */
     height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     line-height: 1;
 }
 
@@ -48,11 +52,7 @@
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
-    font-size: 1rem;
-}
-
-.tab-btn:hover .tab-icon {
-    background-color: rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem; /* Fonte texto normal */
 }
 
 #sidebar:hover .tab-text {
@@ -60,14 +60,12 @@
     transition-delay: 0.1s;
 }
 
-.tab-btn .tab-icon {
-    transition: all 0.2s ease-in-out, transform 0.2s ease-in-out;
-}
-
 .tab-btn:not(.active):hover .tab-icon {
-    transform: scale(1.15) rotate(-8deg);
+    transform: scale(1.1) rotate(-5deg);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
+/* --- Tabelas (Mantido) --- */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -118,7 +116,6 @@
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
-
 
 .table td:has(button) {
     display: flex;

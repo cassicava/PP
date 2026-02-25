@@ -1,22 +1,20 @@
-/* --- Telas Grandes (Ajuste Fino) --- */
+/* --- Telas Grandes (Ajuste Fino - Laptops) --- */
 @media (max-width: 1440px) {
     .container {
-        max-width: 95%;
+        width: calc(100% - var(--sidebar-width-collapsed) - 32px);
     }
 
-    /* NOVO: Diminui o espaçamento lateral em telas menores */
     .page {
         padding-left: 32px;
         padding-right: 32px;
     }
     #page-home {
-        padding-left: 160px;
-        padding-right: 160px;
+        padding-left: 80px; 
+        padding-right: 80px;
     }
-    /* FIM DA ALTERAÇÃO */
 
     .animated-brand-text {
-        font-size: 2.0rem; /* Reduzido */
+        font-size: 2.0rem; 
     }
     .welcome-title {
         font-size: 2.25rem;
@@ -24,9 +22,21 @@
     .welcome-subtitle {
         font-size: 1.125rem;
     }
+    
     input, select, button, label {
         font-size: .95rem;
     }
+
+    /* --- PROTEÇÃO DA SIDEBAR --- */
+    #sidebar .tab-btn {
+        font-size: 0.9rem !important;
+    }
+    #sidebar .tab-btn .tab-icon {
+        font-size: 1.5rem !important; /* Ajuste para telas médias */
+        min-width: 38px;
+        height: 38px;
+    }
+    
     .list .muted {
         font-size: .9rem;
     }
@@ -37,19 +47,20 @@
 
 /* --- Tablets e Telas Menores --- */
 @media (max-width: 992px) {
-    /* --- Layouts Gerais --- */
     .grid-4-col,
     .grid-3-col,
     .grid-2-col,
     .grid-2-col-uneven,
     .passo1-grid,
     .passo2-grid {
-        grid-template-columns: 1fr; /* Transforma em 1 coluna */
+        grid-template-columns: 1fr;
     }
     
     main.container {
-        padding: 0 16px 16px 16px;
+        margin-left: calc(var(--sidebar-width-collapsed) + 24px);
+        width: calc(100% - var(--sidebar-width-collapsed) - 24px);
     }
+    
     #main-header, .page {
         padding-left: 16px;
         padding-right: 16px;
@@ -63,7 +74,6 @@
         font-size: 1.6rem;
     }
     
-    /* --- Formulários --- */
     .form-row, .form-row-aligned {
         flex-direction: column;
         align-items: stretch;
@@ -84,30 +94,56 @@
     }
 }
 
-/* --- Celulares --- */
+/* --- Celulares (Mobile) --- */
 @media (max-width: 768px) {
-    /* --- Layout Principal --- */
     :root {
-        --sidebar-width-collapsed: 60px;
+        --sidebar-width-collapsed: 70px; 
     }
     
-    main.container {
-        margin-left: var(--sidebar-width-collapsed);
-        padding: 0 8px 8px 8px;
-    }
-     #main-header, .page {
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-
-    #sidebar:hover .logo-full,
-    #sidebar:hover .tab-text {
-        opacity: 0; /* Impede expansão de texto em mobile */
+    #sidebar {
+        top: 0;
+        left: 0;
+        height: 100vh;
+        border-radius: 0;
+        margin: 0;
+        border: none;
+        border-right: 1px solid var(--border);
+        background-color: rgba(255, 255, 255, 0.95);
+        width: var(--sidebar-width-collapsed);
+        padding: 12px 8px;
+        box-shadow: none;
     }
 
     #sidebar:hover {
-        width: var(--sidebar-width-collapsed); /* Impede expansão da sidebar */
+        width: var(--sidebar-width-collapsed); 
+    }
+    
+    #sidebar:hover .logo-full,
+    #sidebar:hover .tab-text {
+        opacity: 0; 
+        display: none;
+    }
+    #sidebar:hover .logo-compact {
+        opacity: 1;
+    }
+
+    .tab-btn {
+        justify-content: center;
+        padding: 12px 0;
+    }
+    .tab-btn .tab-icon {
+        margin: 0;
+    }
+
+    main.container {
+        margin-left: var(--sidebar-width-collapsed);
+        width: calc(100% - var(--sidebar-width-collapsed));
+        padding: 0;
+    }
+    
+    #main-header, .page {
+        padding-left: 16px;
+        padding-right: 16px;
     }
     
     #page-title {
@@ -117,7 +153,6 @@
         grid-template-columns: 1fr;
     }
 
-    /* --- Componentes --- */
     .card {
         border-radius: 24px;
         padding: 16px;
@@ -136,14 +171,12 @@
         padding: 16px;
     }
 
-    /* --- Tabelas --- */
     .table th:first-child,
     .table td:first-child {
         min-width: 120px;
         max-width: 120px;
     }
 
-    /* --- Gerador de Escala --- */
     .wizard-header {
         flex-wrap: wrap;
         gap: 12px;
@@ -163,12 +196,10 @@
         flex-grow: 1;
     }
 
-    /* NOVO: Garante que o botão no passo 1 ocupe a largura toda em telas pequenas */
     #gerador-wizard-passo1 .wizard-tips-container .primary {
         width: 100%;
     }
 
-    /* NOVO: Ajusta o cabeçalho do passo 1 que não tem botão de voltar */
     #gerador-wizard-passo1 .wizard-header {
         justify-content: center;
     }
@@ -192,8 +223,6 @@
         justify-content: center;
     }
 
-    /* --- Editor Manual --- */
-    /* ALTERADO: Muda o .focused-employee-view para flex para que a direção em coluna funcione */
     .focused-employee-view {
         display: flex;
         flex-direction: column;
@@ -208,25 +237,10 @@
     .nav-arrow {
         display: none;
     }
-}
 
-/* --- REGRAS MOVIDAS DE 11-home-screen.css --- */
-/* Ajustes para telas de tablet */
-@media (max-width: 992px) {
     #page-home {
-        /* Padding do topo mantido, laterais dobradas para 128px. */
-        padding-top: 64px;
-        padding-left: 128px;
-        padding-right: 128px;
-    }
-}
-
-/* Ajustes para telas de celular */
-@media (max-width: 768px) {
-    #page-home {
-        /* Padding do topo mantido, laterais dobradas para 64px. */
         padding-top: 32px;
-        padding-left: 64px;
-        padding-right: 64px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
 }
