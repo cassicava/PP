@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8" />
     <title>PlantãoPro</title>
@@ -8,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="css/01-base.css" />
     <link rel="stylesheet" href="css/02-layout.css" />
     <link rel="stylesheet" href="css/03-botoes.css" />
@@ -34,16 +32,11 @@
     <link rel="stylesheet" href="css/23-foco-individual.css" />
     <link rel="stylesheet" href="css/24-splash-screen.css" />
     <link rel="stylesheet" href="css/25-tela-ativacao.css" />
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
-
 <body>
     <div id="activation-screen">
         <div class="activation-card">
@@ -105,13 +98,10 @@
         </div>
     </div>
 
-
     <div id="welcome-overlay">
         <div class="welcome-card">
-
             <div id="welcome-step-1" class="welcome-step">
-                <h2 class="welcome-title">Boas-vindas ao <span class="animated-brand-text"
-                        style="font-size: inherit;">PlantãoPro</span>!</h2>
+                <h2 class="welcome-title">Boas-vindas ao <span class="animated-brand-text" style="font-size: inherit;">PlantãoPro</span>!</h2>
                 <p class="welcome-subtitle">Sua nova ferramenta para criar escalas de trabalho de forma inteligente e sem estresse.</p>
                 <div class="welcome-options-container">
                     <div class="welcome-option-card" id="welcome-start-fresh">
@@ -131,17 +121,14 @@
                 <h2 class="welcome-title">Vamos personalizar sua experiência</h2>
                 <div class="welcome-form-group">
                     <label for="welcome-nome-input" class="welcome-label">Primeiro, como podemos te chamar?</label>
-                    <input type="text" id="welcome-nome-input" class="welcome-input"
-                        placeholder="Seu nome" autocomplete="off">
+                    <input type="text" id="welcome-nome-input" class="welcome-input" placeholder="Seu nome" autocomplete="off" maxlength="20">
                 </div>
                 <button id="welcome-personalizacao-next" class="welcome-btn welcome-btn-primary">Próximo</button>
-                <button class="welcome-btn-secondary welcome-btn-back" data-to-step="1">
-                    &lt; Voltar</button>
+                <button class="welcome-btn-secondary welcome-btn-back" data-to-step="1">&lt; Voltar</button>
             </div>
 
             <div id="welcome-step-3" class="welcome-step">
                 <h2 class="welcome-title">Como vamos simplificar o seu dia a dia:</h2>
-                
                 <div id="welcome-feature-carousel">
                     <div class="carousel-item active">
                         <span>🚀</span>
@@ -161,8 +148,7 @@
                     </div>
                 </div>
                 <button id="welcome-proposta-next" class="welcome-btn welcome-btn-primary">Próximo</button>
-                <button class="welcome-btn-secondary welcome-btn-back" data-to-step="2">
-                    &lt; Voltar</button>
+                <button class="welcome-btn-secondary welcome-btn-back" data-to-step="2">&lt; Voltar</button>
             </div>
 
             <div id="welcome-step-4" class="welcome-step">
@@ -178,10 +164,8 @@
                         <span class="text">Política de Privacidade</span>
                     </div>
                 </div>
-                <button id="welcome-finish-btn" class="success" disabled>Concluir e Começar a
-                    Usar!</button>
-                <button class="welcome-btn-secondary welcome-btn-back" data-to-step="3">
-                    &lt; Voltar</button>
+                <button id="welcome-finish-btn" class="success" disabled>Concluir e Começar a Usar!</button>
+                <button class="welcome-btn-secondary welcome-btn-back" data-to-step="3">&lt; Voltar</button>
             </div>
 
             <div class="welcome-progress-indicator">
@@ -190,7 +174,6 @@
                 <span class="progress-dot" data-step="3"></span>
                 <span class="progress-dot" data-step="4"></span>
             </div>
-
         </div>
     </div>
     <nav id="sidebar">
@@ -226,7 +209,6 @@
                 <span class="tab-text">Escalas Salvas</span>
             </button>
             <button class="tab-btn" data-page="relatorios">
-
                 <span class="tab-icon">📈</span>
                 <span class="tab-text">Relatórios</span>
             </button>
@@ -247,8 +229,33 @@
                 </div>
             </div>
         </header>
-<br/><br/>
+        <br/><br/>
+        
         <section id="page-home" class="page">
+            <div id="status-hoje-container" class="hidden">
+                <div class="card status-hoje-card collapsed" id="status-hoje-main-card">
+                    <div class="status-hoje-header" id="status-hoje-header-clickable">
+                        <h2 class="animated-brand-text">Status de Hoje</h2>
+                        <span class="status-hoje-toggle-icon animated-brand-text">▲</span>
+                    </div>
+                    <div class="status-hoje-expandable">
+                        <div class="status-hoje-expandable-inner">
+                            <div class="status-hoje-controls">
+                                <select id="status-hoje-cargo-select" class="hidden"></select>
+                            </div>
+                            <div class="status-hoje-body">
+                                <div class="timeline-container">
+                                    <div class="timeline-track">
+                                        <div class="timeline-progress" id="status-hoje-progress"></div>
+                                    </div>
+                                    <div class="timeline-shifts" id="status-hoje-shifts"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="quick-metrics-panel card">
                 <div class="metrics-items">
                     <span id="metric-turnos" class="metric-item">🕒 Turnos: 0</span>
@@ -357,7 +364,7 @@
                     </div>
                     <div class="painel-tab-content" data-tab-content="formulario">
                         <div class="animated-field" style="max-width: 50%; margin-bottom: 12px;">
-                            <input id="turnoNome" type="text" placeholder=" " autocomplete="off" />
+                            <input id="turnoNome" type="text" placeholder=" " autocomplete="off" maxlength="20" />
                             <label for="turnoNome">Nome do Turno</label>
                         </div>
                         <fieldset class="fieldset-wrapper">
@@ -477,7 +484,7 @@
                     <div class="painel-tab-content" data-tab-content="formulario">
                         <div class="grid-3-col">
                             <div class="animated-field" style="grid-column: 1 / 3;">
-                                <input id="cargoNome" type="text" placeholder=" " autocomplete="off" />
+                                <input id="cargoNome" type="text" placeholder=" " autocomplete="off" maxlength="30" />
                                 <label for="cargoNome">Nome do Cargo</label>
                             </div>
                         </div>
@@ -594,11 +601,11 @@
                     <div class="painel-tab-content" data-tab-content="formulario">
                         <div class="grid-2-col" style="gap: 24px; align-items: flex-start; margin-bottom: 0;">
                             <div class="animated-field">
-                                <input id="funcNome" type="text" placeholder=" " autocomplete="off" />
+                                <input id="funcNome" type="text" placeholder=" " autocomplete="off" maxlength="20" />
                                 <label for="funcNome">Nome Completo</label>
                             </div>
                             <div class="animated-field">
-                                <input id="funcDocumento" type="text" placeholder=" " autocomplete="off" />
+                                <input id="funcDocumento" type="text" placeholder=" " autocomplete="off" maxlength="20" />
                                 <label for="funcDocumento">Documento (Opcional)</label>
                             </div>
                         </div>
@@ -734,7 +741,7 @@
                         <div class="grid-2-col-uneven" style="gap: 32px; align-items: start; margin-bottom: 0;">
                             <div>
                                 <div class="animated-field" style="margin-bottom: 16px;">
-                                    <input id="equipeNome" type="text" placeholder=" " autocomplete="off" />
+                                    <input id="equipeNome" type="text" placeholder=" " autocomplete="off" maxlength="20" />
                                     <label for="equipeNome">Nome da Equipe</label>
                                 </div>
                                 <div class="form-row-aligned" style="gap: 16px;">
@@ -834,7 +841,7 @@
                         <div class="escala-view-header-center">
                             <div id="gerador-escala-title-container" class="escala-title-container">
                                 <h2 class="escala-title-text" id="gerador-escalaViewTitle"></h2>
-                                <input type="text" class="escala-title-input" id="gerador-escalaViewTitleInput" autocomplete="off" />
+                                <input type="text" class="escala-title-input" id="gerador-escalaViewTitleInput" autocomplete="off" maxlength="40" />
                                 <button class="escala-title-edit-btn" id="gerador-escala-edit-title-btn" title="Editar nome da escala" aria-label="Editar nome da escala">✏️</button>
                             </div>
                             <div class="painel-tabs" id="gerador-view-tabs">
@@ -1004,7 +1011,7 @@
                                     </div>
                                     <div class="config-item-control">
                                         <div class="animated-field" style="width: 100%; max-width: 300px;">
-                                            <input type="text" id="configNome" placeholder=" " autocomplete="off" />
+                                            <input type="text" id="configNome" placeholder=" " autocomplete="off" maxlength="20" />
                                             <label for="configNome">Seu nome</label>
                                         </div>
                                     </div>
@@ -1100,8 +1107,6 @@
                         </div>
                     </div>
 
-
-
                 </div>
             </div>
         </section>
@@ -1158,7 +1163,6 @@
         <button id="loader-cancel-btn" class="danger">Cancelar Geração</button>
     </div>
 
-
     <div id="download-feedback-toast" class="hidden">
         <div class="feedback-toast-icon-sequence">
             <div class="icon-set success-icons">
@@ -1190,23 +1194,22 @@
             </div>
     </aside>
 
-
-<div id="download-success-overlay" class="hidden">
-    <div class="success-content">
-        <div class="success-icon-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
+    <div id="download-success-overlay" class="hidden">
+        <div class="success-content">
+            <div class="success-icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h3>Arquivo Salvo!</h3>
+            <p>
+                O download foi concluído com sucesso.<br>
+                Verifique sua <span class="success-highlight">Pasta de Downloads 📂</span>
+            </p>
         </div>
-        <h3>Arquivo Salvo!</h3>
-        <p>
-            O download foi concluído com sucesso.<br>
-            Verifique sua <span class="success-highlight">Pasta de Downloads 📂</span>
-        </p>
     </div>
-</div>
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -1232,5 +1235,4 @@
     <script src="js/Z-ativacao.js"></script>
     <script src="js/A-principal.js"></script>
 </body>
-
 </html>

@@ -1,7 +1,3 @@
-/**************************************
- * 🛠️ Utilidades / Persistência
- **************************************/
-
 const $ = (sel, el=document) => el.querySelector(sel);
 const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
 
@@ -655,4 +651,54 @@ function formatISODate(isoString) {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
 }
 
-document.addEventListener('DOMContentLoaded', applyRippleEffectToAllButtons);
+// NOVO: Função para injetar o contador visual de caracteres em inputs limitados
+function setupCharacterCounters() {
+    const inputsWithMaxlength = document.querySelectorAll('input[maxlength]');
+    inputsWithMaxlength.forEach(input => {
+        if (input.classList.contains('digit-input')) return;
+
+        const maxLength = input.getAttribute('maxlength');
+        const animatedField = input.closest('.animated-field');
+        
+        if (animatedField) {
+            input.classList.add('has-counter');
+            let counterSpan = animatedField.querySelector('.char-counter');
+            if (!counterSpan) {
+                counterSpan = document.createElement('span');
+                counterSpan.className = 'char-counter';
+                animatedField.appendChild(counterSpan);
+            }
+            
+            const updateCounter = () => {
+                const currentLength = input.value.length;
+                counterSpan.textContent = `${currentLength}/${maxLength}`;
+                if (currentLength >= maxLength) {
+                    counterSpan.classList.add('limit-reached');
+                } else {
+                    counterSpan.classList.remove('limit-reached');
+                }
+            };
+            
+            input.addEventListener('input', updateCounter);
+            updateCounter();
+
+            if (!input._hasCounterIntercept) {
+                const descriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+                const originalSet = descriptor.set;
+                Object.defineProperty(input, 'value', {
+                    set: function(val) {
+                        originalSet.call(this, val);
+                        updateCounter();
+                    },
+                    get: descriptor.get
+                });
+                input._hasCounterIntercept = true;
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    applyRippleEffectToAllButtons();
+    setupCharacterCounters();
+});
