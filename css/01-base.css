@@ -20,6 +20,23 @@
   --gradient-end: #10b681;
 }
 
+body.dark-mode {
+  --bg: #121212;
+  --fg: #d4d4d4;
+  --muted: #888888;
+  --card: #1e1e1e;
+  --border: #333333;
+  --topbar-bg: var(--card);
+  --secondary: #737373;
+  --shadow: 0 4px 18px rgba(0, 0, 0, 0.8);
+  --brand: #60a5fa;
+  --brand-2: #3b82f6;
+  --gradient-start: #22d3ee;
+  --gradient-mid: #60a5fa;
+  --gradient-end: #34d399;
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -29,8 +46,8 @@
 }
 
 html {
-  /* ADICIONADO: Habilita a rolagem suave em toda a página */
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 html,
@@ -43,15 +60,12 @@ body {
   font-family: var(--font-sans);
   color: var(--fg);
   background: var(--bg);
-  
-  /* NOVO: Impede a seleção de texto na interface */
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* IE 10+ */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 
-/* NOVO: Permite a seleção de texto DENTRO de campos de formulário e inputs */
 input, 
 textarea, 
 [contenteditable="true"] {
@@ -59,4 +73,362 @@ textarea,
   -moz-user-select: auto;
   -ms-user-select: auto;
   user-select: auto;
+}
+
+/* Scrollbars Universais em Modo Escuro */
+body.dark-mode *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.dark-mode *::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: 4px;
+}
+
+body.dark-mode *::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 4px;
+}
+
+body.dark-mode *::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Modificadores Gerais para Menu e UI em Dark Mode */
+body.dark-mode #page-title {
+  color: #ffffff;
+}
+
+body.dark-mode #sidebar {
+  background-color: rgba(30, 30, 30, 0.8);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .tab-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .tab-btn:not(.active):hover .tab-icon {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+body.dark-mode .tab-btn.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+body.dark-mode .tab-btn.active .tab-icon {
+  background-color: var(--brand);
+  color: #121212;
+  box-shadow: none;
+}
+
+body.dark-mode .quick-metrics-panel {
+  background-color: rgba(30, 30, 30, 0.5);
+}
+
+body.dark-mode .card {
+  background-color: rgba(30, 30, 30, 0.75);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .home-card {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode #editor-toolbox {
+  background: rgba(30, 30, 30, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .home-progress-panel.completed {
+  background: linear-gradient(135deg, #1a1a1a 0%, #1e1e1e 100%);
+  border-color: #333;
+}
+
+body.dark-mode .home-progress-unlock-badge {
+  background-color: #333;
+  color: var(--brand);
+}
+
+body.dark-mode .calendar-day {
+  background-color: var(--border);
+}
+
+body.dark-mode .calendar-day:not(.empty):hover {
+  background-color: #444;
+}
+
+body.dark-mode .calendar-day.is-holiday-off {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .escala-final-table th.weekend {
+  background-color: #3a1c1c;
+}
+
+body.dark-mode .escala-final-table th.feriado {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .escala-final-table th.feriado-folga {
+  background-color: #333;
+}
+
+body.dark-mode .celula-fechada,
+body.dark-mode .foco-coluna-calendario .calendar-day.celula-fechada {
+  background-color: #121212;
+  background-image: repeating-linear-gradient(135deg, transparent, transparent 4px, rgba(255,255,255,0.02) 4px, rgba(255,255,255,0.02) 8px);
+}
+
+body.dark-mode .explanation-box {
+  background-color: #2a2a2a;
+  color: var(--fg);
+  border-left-color: var(--brand);
+}
+
+body.dark-mode .shift-funcs li {
+  background: #1e1e1e;
+  color: var(--fg);
+}
+
+body.dark-mode #modal {
+  background-color: var(--card);
+}
+
+body.dark-mode .modal-backdrop {
+  background-color: rgba(0,0,0,0.7);
+}
+
+body.dark-mode .painel-feriados-list li {
+  background-color: var(--card);
+}
+
+body.dark-mode .painel-feriados-list li.feriado-trabalho {
+  background-color: #2a2a2a;
+  border-color: #555;
+}
+
+body.dark-mode .painel-feriados-list li.feriado-folga {
+  background-color: #1a1a1a;
+  border-color: #444;
+}
+
+body.dark-mode .equipe-config-card {
+  background-color: var(--bg);
+}
+
+body.dark-mode .equipe-config-card.selected {
+  background-color: #2a2a2a;
+  border-color: var(--brand);
+}
+
+body.dark-mode .equipe-config-card .pattern-inputs, 
+body.dark-mode .equipe-config-card .start-date-input {
+  background-color: var(--card);
+}
+
+body.dark-mode .table, 
+body.dark-mode .escala-final-table {
+  color: var(--fg);
+}
+
+body.dark-mode .table tbody tr:hover,
+body.dark-mode .escala-final-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+body.dark-mode select,
+body.dark-mode input,
+body.dark-mode textarea {
+  background-color: var(--bg) !important;
+  color: var(--fg) !important;
+  border-color: var(--border) !important;
+}
+
+body.dark-mode select option {
+  background-color: var(--card);
+  color: var(--fg);
+}
+
+/* Força os inputs nativos de tempo e hora a usarem temas escuros */
+body.dark-mode input[type="date"],
+body.dark-mode input[type="time"],
+body.dark-mode input[type="datetime-local"] {
+  background-color: var(--bg) !important;
+  color: var(--fg) !important;
+  color-scheme: dark !important;
+}
+
+body.dark-mode .animated-field input:focus + label,
+body.dark-mode .animated-field input:not(:placeholder-shown) + label,
+body.dark-mode .animated-field select:focus + label,
+body.dark-mode .animated-field select:not(:placeholder-shown) + label {
+  background-color: var(--bg);
+}
+
+body.dark-mode .card .animated-field input:focus + label,
+body.dark-mode .card .animated-field input:not(:placeholder-shown) + label,
+body.dark-mode .card .animated-field select:focus + label,
+body.dark-mode .card .animated-field select:not(:placeholder-shown) + label {
+  background-color: var(--card);
+}
+
+/* Botões do cabeçalho e do painel de configuração e respetivos hovers */
+body.dark-mode #context-help-btn,
+body.dark-mode .header-action-btn,
+body.dark-mode .info-link-btn {
+  background-color: var(--bg);
+  border-color: var(--border);
+  color: var(--fg);
+}
+
+body.dark-mode #context-help-btn:hover,
+body.dark-mode .header-action-btn:hover,
+body.dark-mode .info-link-btn:hover {
+  background-color: #2a2a2a !important;
+  border-color: var(--brand) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode #help-panel {
+  background-color: rgba(30, 30, 30, 0.85);
+  border-color: var(--border);
+}
+
+body.dark-mode #help-panel-header {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-bottom-color: var(--border);
+}
+
+body.dark-mode #help-panel-title {
+  color: #ffffff;
+}
+
+body.dark-mode .help-card {
+  background-color: var(--card);
+  border-color: var(--border);
+}
+
+body.dark-mode .help-card h4 {
+  color: #ffffff;
+}
+
+body.dark-mode .help-card p,
+body.dark-mode .help-card ul {
+  color: var(--muted);
+}
+
+body.dark-mode .info-link-btn {
+  background-color: var(--bg);
+  color: var(--fg);
+  border-color: var(--border);
+}
+
+body.dark-mode .info-link-btn:hover {
+  background-color: var(--card);
+  border-color: var(--brand);
+}
+
+body.dark-mode .explanation-box::before {
+  opacity: 0.8;
+}
+
+/* Cores pastéis e modernas para os botões secundários */
+body.dark-mode button.primary {
+  border-color: #60a5fa;
+  color: #93c5fd;
+}
+body.dark-mode button.primary:hover {
+  background-color: #1e3a8a;
+  color: #ffffff;
+}
+
+body.dark-mode button.success {
+  border-color: #4ade80;
+  color: #86efac;
+  background-color: rgba(34, 197, 94, 0.1);
+}
+body.dark-mode button.success:hover {
+  background-color: #14532d;
+  color: #ffffff;
+}
+
+body.dark-mode button.danger {
+  border-color: #f87171;
+  color: #fca5a5;
+  background-color: rgba(239, 68, 68, 0.1);
+}
+body.dark-mode button.danger:hover {
+  background-color: #7f1d1d;
+  color: #ffffff;
+}
+
+body.dark-mode button.purple {
+  border-color: #c084fc;
+  color: #d8b4fe;
+  background-color: rgba(168, 85, 247, 0.1);
+}
+body.dark-mode button.purple:hover {
+  background-color: #4c1d95;
+  color: #ffffff;
+}
+
+body.dark-mode button.secondary {
+  border-color: #94a3b8;
+  color: #cbd5e1;
+  background-color: rgba(100, 116, 139, 0.1);
+}
+body.dark-mode button.secondary:hover {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+@keyframes theme-spin {
+    0% { transform: rotate(0deg) scale(1); opacity: 1; }
+    50% { transform: rotate(180deg) scale(0.6); opacity: 0; }
+    100% { transform: rotate(360deg) scale(1); opacity: 1; }
+}
+.theme-spin-anim {
+    animation: theme-spin 0.4s ease-in-out;
+}
+
+/* --- Correção Visual para os Painéis de Seleção (Checkboxes, Membros da Equipe, Turnos) --- */
+
+body.dark-mode .check-container,
+body.dark-mode .dias-semana-container,
+body.dark-mode .turno-disponibilidade-grid,
+body.dark-mode .cobertura-individual-dias-container,
+body.dark-mode .regras-fieldset {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  border-color: var(--border) !important;
+}
+
+body.dark-mode .check-inline {
+  background-color: var(--bg) !important;
+  border-color: var(--border) !important;
+  color: var(--fg) !important;
+}
+
+body.dark-mode .check-inline:hover {
+  background-color: var(--card) !important;
+}
+
+body.dark-mode .check-inline:has(input:checked),
+body.dark-mode .check-inline.active {
+  background-color: rgba(96, 165, 250, 0.15) !important;
+  border-color: var(--brand) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .toggle-btn.active {
+  background-color: rgba(96, 165, 250, 0.15) !important;
+  border-color: var(--brand) !important;
+  color: #ffffff !important;
 }

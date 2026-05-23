@@ -38,6 +38,7 @@
     background-color: var(--card);
     box-shadow: var(--shadow);
 }
+
 #gerador-wizard-tabs .painel-tab-btn.active::before {
     content: '➡️';
 }
@@ -46,6 +47,7 @@
     color: var(--muted);
     font-weight: 500;
 }
+
 #gerador-wizard-tabs .painel-tab-btn.completed::before {
     content: '✅';
 }
@@ -58,10 +60,10 @@
     box-shadow: none;
     border-color: transparent !important;
 }
+
 #gerador-wizard-tabs .painel-tab-btn[disabled]::before {
     content: '🔒';
 }
-
 
 .passo1-grid,
 .passo2-grid {
@@ -95,6 +97,7 @@
   margin-bottom: 16px;
   border-bottom: 1px solid var(--border);
 }
+
 .regra-item:last-child {
   border-bottom: none;
   margin-bottom: 0;
@@ -120,6 +123,7 @@
     gap: 24px;
     align-items: flex-start;
 }
+
 .calendars-wrapper {
   display: flex;
   flex-direction: column;
@@ -128,12 +132,14 @@
   overflow-y: auto;
   padding-right: 12px;
 }
+
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
   padding-bottom: 12px;
 }
+
 .calendar-header {
   font-weight: 500;
   text-align: center;
@@ -141,6 +147,7 @@
   font-size: 0.75rem;
   padding-bottom: 8px;
 }
+
 .month-title {
   grid-column: 1 / -1;
   text-align: center;
@@ -148,6 +155,7 @@
   font-weight: 600;
   margin-bottom: 8px;
 }
+
 .calendar-day {
   display: flex;
   justify-content: center;
@@ -163,13 +171,16 @@
   box-sizing: border-box;
   border: 2px solid transparent;
 }
+
 .calendar-day.empty {
   cursor: default;
   background-color: transparent;
 }
+
 .calendar-day .day-number {
     line-height: 1;
 }
+
 .calendar-day:not(.empty):hover {
   background-color: #e0e7ff;
 }
@@ -178,6 +189,7 @@
     color: var(--danger);
     font-weight: 500;
 }
+
 .calendar-day.is-selected {
   background-color: var(--brand) !important;
   color: white !important;
@@ -185,10 +197,12 @@
   position: relative;
   z-index: 2;
 }
+
 .calendar-day.is-holiday .day-number,
 .calendar-day.has-ausencia .day-number {
   font-weight: bold;
 }
+
 .calendar-day.is-holiday::after {
   content: "";
   position: absolute;
@@ -200,9 +214,11 @@
   border-radius: 50%;
   background-color: var(--brand);
 }
+
 .calendar-day.is-selected.is-holiday::after {
   background-color: white;
 }
+
 .calendar-day.is-holiday-off {
   background-color: #dbeafe;
 }
@@ -211,6 +227,7 @@
   position: sticky;
   top: 24px;
 }
+
 .holiday-editor-placeholder {
   text-align: center;
   color: var(--muted);
@@ -222,6 +239,7 @@
   justify-content: center;
   height: 100%;
 }
+
 .holiday-editor-content {
   display: flex;
   flex-direction: column;
@@ -231,11 +249,13 @@
   border-radius: 12px;
   background-color: var(--card);
 }
+
 .holiday-editor-content > h5 {
     margin: 0;
     font-size: 1.3rem;
     font-weight: 500;
 }
+
 .holiday-editor-content > fieldset {
     background-color: var(--bg);
     border: 1px solid var(--border);
@@ -247,16 +267,19 @@
     gap: 16px;
     transition: opacity 0.3s, filter 0.3s;
 }
+
 .holiday-editor-content > fieldset:disabled,
 #ausencia-editor-container fieldset:disabled {
     opacity: 0.5;
     filter: grayscale(50%);
     pointer-events: none;
 }
+
 .holiday-editor-content > fieldset legend {
   font-size: 0.9rem;
   font-weight: 500;
 }
+
 .holiday-editor-actions {
   display: flex;
   gap: 8px;
@@ -264,12 +287,14 @@
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
+
 .holiday-config-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
 }
+
 .holiday-config-row .form-group {
   flex: 1;
 }
@@ -279,12 +304,14 @@
   top: 24px;
   max-height: 75vh;
 }
+
 #holiday-list-wrapper .fieldset-wrapper,
 #ausencia-list-wrapper .fieldset-wrapper {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
+
 .summary-list {
   list-style: none;
   padding: 0;
@@ -292,6 +319,7 @@
   overflow-y: auto;
   flex-grow: 1;
 }
+
 .summary-list-item {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -308,6 +336,7 @@
   border-left: 4px solid;
   cursor: pointer;
 }
+
 .summary-list-item:hover {
   background-color: var(--border);
 }
@@ -318,10 +347,12 @@
   align-items: center;
   gap: 8px;
 }
+
 .summary-list-item-header .item-type {
   font-weight: 600;
   font-size: 1rem;
 }
+
 .summary-list-item-header .item-name {
   font-weight: 500;
   color: var(--muted);
@@ -329,11 +360,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .summary-list-item-body {
   grid-area: body;
   font-size: 0.9rem;
   color: var(--muted);
 }
+
 .summary-list-item-footer {
   grid-area: footer;
   display: flex;
@@ -342,6 +375,7 @@
   margin-top: 8px;
   border-top: 1px solid var(--border);
 }
+
 .summary-delete-btn {
   background-color: transparent;
   border: 1px solid var(--danger);
@@ -352,11 +386,11 @@
   cursor: pointer;
   transition: all 0.2s;
 }
+
 .summary-delete-btn:hover {
   background-color: var(--danger);
   color: #fff;
 }
-
 
 .ausencia-dots-container {
     position: absolute;
@@ -391,6 +425,7 @@
     line-height: 1;
     color: var(--fg);
 }
+
 .calendar-day.is-selected .ausencia-plus-symbol {
     color: white;
 }
@@ -404,7 +439,7 @@
 
 #gerador-painel-escala,
 #salva-painel-escala {
-    margin-top: 16px;
+    margin-top: 0;
     padding: 0;
     overflow: hidden;
 }
@@ -441,6 +476,7 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
+
 #gerador-painel-escala .painel-tab-btn.active:not([data-tab="geral"]):not([data-tab="individual"]),
 #salva-painel-escala .painel-tab-btn.active:not([data-tab="geral"]) {
     background-color: var(--card);
@@ -460,6 +496,7 @@
     padding: 4px;
     width: fit-content;
 }
+
 #gerador-view-tabs .painel-tab-btn,
 #salva-view-tabs .painel-tab-btn {
     border: none;
@@ -471,13 +508,13 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
+
 #gerador-view-tabs .painel-tab-btn.active,
 #salva-view-tabs .painel-tab-btn.active {
     background-color: var(--card);
     color: var(--brand);
     box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
 }
-
 
 #gerador-escalaView.hidden,
 #escalaSalvaView.hidden {
@@ -501,7 +538,6 @@
     min-height: 0;
 }
 
-
 #gerador-escalaTabelaWrap,
 #escalaSalvaTabelaWrap {
   overflow: auto;
@@ -520,7 +556,6 @@
     outline-offset: -2px;
     box-shadow: 0 0 12px var(--brand);
 }
-
 
 .escala-final-table th,
 .escala-final-table td {
@@ -573,7 +608,6 @@
     z-index: 4;
 }
 
-
 .escala-final-table tbody tr:nth-child(even) td:first-child {
   background-color: var(--bg);
 }
@@ -616,7 +650,6 @@
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-
 
 @keyframes flash {
   from {
@@ -672,6 +705,7 @@
   width: 14px;
   height: 14px;
 }
+
 .legenda-item strong {
   color: var(--brand);
 }
@@ -683,6 +717,7 @@
   gap: 8px;
   justify-content: center;
 }
+
 .escala-title-text {
   font-size: 1.5rem;
   margin: 0;
@@ -692,9 +727,11 @@
   transition: background-color 0.2s;
   border: 2px solid transparent;
 }
+
 .escala-title-text:hover {
   background-color: var(--bg);
 }
+
 .escala-title-edit-btn {
   padding: 4px 8px;
   font-size: 1rem;
@@ -705,12 +742,15 @@
   transition: all 0.2s;
   border-radius: 8px;
 }
+
 .escala-title-container:hover .escala-title-edit-btn {
   opacity: 1;
 }
+
 .escala-title-edit-btn:hover {
   background-color: var(--bg);
 }
+
 .escala-title-input {
   font-size: 1.5rem;
   font-weight: bold;
@@ -722,12 +762,15 @@
   width: 100%;
   max-width: 450px;
 }
+
 .escala-title-container .escala-title-input {
   display: none;
 }
+
 .escala-title-container.is-editing .escala-title-text {
   display: none;
 }
+
 .escala-title-container.is-editing .escala-title-input {
   display: block;
 }
@@ -740,6 +783,7 @@
   padding-bottom: 12px;
   margin-bottom: 16px;
 }
+
 .painel-title {
   margin: 0;
   font-size: 1.2rem;
@@ -748,6 +792,7 @@
   align-items: flex-start;
   gap: 4px;
 }
+
 .painel-title-main {
   display: flex;
   align-items: center;
@@ -758,12 +803,15 @@
   font-size: 1.5rem;
   line-height: 1;
 }
+
 .saude-escala-icon.status-ok {
   color: #22c55e;
 }
+
 .saude-escala-icon.status-warning {
   color: #f97316;
 }
+
 .saude-escala-icon.status-danger {
   color: #ef4444;
 }
@@ -772,21 +820,23 @@
   font-size: 0.85rem;
   font-weight: 500;
 }
+
 .saude-escala-icon.status-ok ~ .saude-escala-text {
   color: #16a34a;
 }
+
 .saude-escala-icon.status-warning ~ .saude-escala-text {
   color: #f97316;
 }
+
 .saude-escala-icon.status-danger ~ .saude-escala-text {
   color: #ef4444;
 }
 
-
-
 .painel-tab-content {
   display: none;
 }
+
 .painel-tab-content.active {
   display: block;
   animation: fadeIn 0.3s ease-in-out;
@@ -923,31 +973,37 @@
   border-radius: 999px;
   transition: width 0.4s ease-out, background-color 0.4s ease-out;
 }
+
 .resumo-prog-main {
   z-index: 2;
 }
+
 .resumo-prog-overtime {
   background-color: var(--overtime-color);
   z-index: 1;
 }
+
 .resumo-prog-bar.red {
   background-color: #ef4444;
 }
+
 .resumo-prog-bar.yellow {
   background-color: #facc15;
 }
+
 .resumo-prog-bar.blue {
   background-color: #3b82f6;
 }
+
 .resumo-prog-bar.green {
   background-color: #4ade80;
 }
-
 
 .resumo-saldo.positivo {
   color: #16a34a;
   font-weight: bold;
 }
+
 .resumo-saldo.negativo {
   color: var(--brand);
   font-weight: bold;
@@ -958,24 +1014,28 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
 }
+
 .stat-item {
   background-color: var(--bg);
   padding: 12px;
   border-radius: 8px;
   border: 1px solid var(--border);
 }
+
 .stat-item h5 {
   margin: 0 0 4px 0;
   font-size: 0.8rem;
   color: var(--muted);
   font-weight: 500;
 }
+
 .stat-item p {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--fg);
 }
+
 .stat-item p .vagas {
   color: var(--danger);
 }
@@ -992,6 +1052,7 @@
   overflow-y: auto;
   padding: 4px;
 }
+
 .painel-feriados-list li {
   display: flex;
   flex-direction: column;
@@ -1005,10 +1066,12 @@
   min-width: 150px;
   text-align: center;
 }
+
 .painel-feriados-list li.feriado-trabalho {
     border-color: #93c5fd;
     background-color: #eff6ff;
 }
+
 .painel-feriados-list li.feriado-folga {
     border-color: #a7f3d0;
     background-color: #dcfce7;
@@ -1020,16 +1083,17 @@
   margin-bottom: 4px;
   display: block;
 }
+
 .painel-feriados-list .feriado-nome {
   color: var(--muted);
   font-size: 0.8rem;
 }
+
 .painel-feriados-list .feriado-status {
     font-size: 0.7rem;
     font-weight: 700;
     margin-top: 4px;
 }
-
 
 .workload-indicator {
   display: inline-block;
@@ -1041,18 +1105,22 @@
   vertical-align: middle;
   border: 1px solid var(--border);
 }
+
 .workload-indicator.workload-danger {
   background-color: #ef4444;
   border-color: #dc2626;
 }
+
 .workload-indicator.workload-warning {
   background-color: #facc15;
   border-color: #eab308;
 }
+
 .workload-indicator.workload-good {
   background-color: #3b82f6;
   border-color: #2563eb;
 }
+
 .workload-indicator.workload-ok {
   background-color: #4ade80;
   border-color: #22c55e;
@@ -1070,7 +1138,6 @@
     flex-direction: column;
     gap: 16px;
 }
-
 
 @media (max-width: 1200px) {
   .passo2-holiday-grid,
@@ -1164,6 +1231,7 @@
     font-weight: bold;
     color: var(--fg);
 }
+
 .cobertura-turno-fieldset > legend span {
     font-weight: normal;
     font-size: 0.9rem;
@@ -1180,17 +1248,20 @@
     border-radius: 8px;
     border: 1px solid var(--border);
 }
+
 .cobertura-individual-dias-container .dia-input-group {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
 }
+
 .cobertura-individual-dias-container .dia-input-group label {
     font-size: 0.8rem;
     font-weight: 500;
     color: var(--muted);
 }
+
 .cobertura-individual-dias-container .dia-input-group input {
     width: 50px;
     padding: 6px; 
@@ -1198,6 +1269,7 @@
     font-size: 1rem;
     border-radius: 8px;
 }
+
 .cobertura-individual-dias-container .btn-replicar-cobertura {
     margin-left: auto; 
 }
@@ -1239,7 +1311,6 @@
     font-size: 1.2rem;
 }
 
-
 .equipe-config-card h4 {
     margin: 0 0 16px 0;
     display: flex;
@@ -1247,6 +1318,7 @@
     gap: 8px;
     pointer-events: none; 
 }
+
 .equipe-config-card h4 input[type="checkbox"] {
     display: none;
 }
@@ -1257,6 +1329,7 @@
     gap: 12px; 
     pointer-events: none; 
 }
+
 .equipe-config-details input {
     pointer-events: all; 
 }
@@ -1278,6 +1351,7 @@
     padding: 6px;
     border-radius: 6px;
 }
+
 .equipe-config-card .pattern-inputs span {
     color: var(--muted);
 }
@@ -1292,11 +1366,11 @@
     border-radius: 8px;
     border: 1px solid var(--border);
 }
+
 .equipe-config-card .start-date-input input {
     padding: 6px;
     border-radius: 6px;
 }
-
 
 .equipe-config-card .equipe-pattern-explanation {
     margin-top: 4px; 
@@ -1395,10 +1469,10 @@
 #btn-gerador-next:not(:disabled).pulsing-button {
     animation: pulse-shadow 2s infinite;
 }
+
 #btn-confirmar-metas:not(:disabled).pulsing-button {
     animation: pulse-shadow-success 2s infinite;
 }
-
 
 .balanco-mestre-container {
     background-color: var(--card);

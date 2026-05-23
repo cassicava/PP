@@ -1,9 +1,7 @@
-/* --- Telas Grandes (Ajuste Fino - Laptops) --- */
 @media (max-width: 1440px) {
     .container {
         width: calc(100% - var(--sidebar-width-collapsed) - 32px);
     }
-
     .page {
         padding-left: 32px;
         padding-right: 32px;
@@ -12,7 +10,6 @@
         padding-left: 80px; 
         padding-right: 80px;
     }
-
     .animated-brand-text {
         font-size: 2.0rem; 
     }
@@ -22,21 +19,27 @@
     .welcome-subtitle {
         font-size: 1.125rem;
     }
-    
     input, select, button, label {
         font-size: .95rem;
     }
+    
+    /* MUDANÇA PARA ECRÃS MENORES (Laptops) */
+    #sidebar .tab-btn:hover,
+    #sidebar .tab-btn.active {
+        background-color: transparent !important;
+    }
+    
+    body.dark-mode #sidebar .tab-btn:hover,
+    body.dark-mode #sidebar .tab-btn.active {
+        background-color: transparent !important;
+    }
 
-    /* --- PROTEÇÃO DA SIDEBAR --- */
     #sidebar .tab-btn {
         font-size: 0.9rem !important;
     }
     #sidebar .tab-btn .tab-icon {
-        font-size: 1.5rem !important; /* Ajuste para telas médias */
-        min-width: 38px;
-        height: 38px;
+        font-size: 1.5rem !important; 
     }
-    
     .list .muted {
         font-size: .9rem;
     }
@@ -45,7 +48,6 @@
     }
 }
 
-/* --- Tablets e Telas Menores --- */
 @media (max-width: 992px) {
     .grid-4-col,
     .grid-3-col,
@@ -55,51 +57,41 @@
     .passo2-grid {
         grid-template-columns: 1fr;
     }
-    
     main.container {
         margin-left: calc(var(--sidebar-width-collapsed) + 24px);
         width: calc(100% - var(--sidebar-width-collapsed) - 24px);
     }
-    
     #main-header, .page {
         padding-left: 16px;
         padding-right: 16px;
     }
-
     .card {
         padding: 16px 24px;
     }
-
     #page-title {
         font-size: 1.6rem;
     }
-    
     .form-row, .form-row-aligned {
         flex-direction: column;
         align-items: stretch;
         gap: 16px;
     }
-
     .form-field-half {
         min-width: 100%;
     }
-
     .ml-auto {
         margin-left: 0;
         width: 100%;
     }
-    
     .explanation-box {
         margin-top: 8px;
     }
 }
 
-/* --- Celulares (Mobile) --- */
 @media (max-width: 768px) {
     :root {
         --sidebar-width-collapsed: 70px; 
     }
-    
     #sidebar {
         top: 0;
         left: 0;
@@ -113,11 +105,9 @@
         padding: 12px 8px;
         box-shadow: none;
     }
-
     #sidebar:hover {
         width: var(--sidebar-width-collapsed); 
     }
-    
     #sidebar:hover .logo-full,
     #sidebar:hover .tab-text {
         opacity: 0; 
@@ -140,43 +130,35 @@
         width: calc(100% - var(--sidebar-width-collapsed));
         padding: 0;
     }
-    
     #main-header, .page {
         padding-left: 16px;
         padding-right: 16px;
     }
-    
     #page-title {
         font-size: 1.5rem;
     }
     .config-grid {
         grid-template-columns: 1fr;
     }
-
     .card {
         border-radius: 24px;
         padding: 16px;
     }
-
     .welcome-card {
         padding: 24px 16px 48px 16px;
     }
-
     .welcome-title {
         font-size: 1.8rem;
     }
-    
     .modal {
         width: 95%;
         padding: 16px;
     }
-
     .table th:first-child,
     .table td:first-child {
         min-width: 120px;
         max-width: 120px;
     }
-
     .wizard-header {
         flex-wrap: wrap;
         gap: 12px;
@@ -184,62 +166,51 @@
         padding-bottom: 12px;
         margin-bottom: 12px;
     }
-
     .wizard-header h3 {
         order: -1;
         width: 100%;
         font-size: 1.2rem;
     }
-
     .wizard-header .button-voltar,
     .wizard-header .primary {
         flex-grow: 1;
     }
-
     #gerador-wizard-passo1 .wizard-tips-container .primary {
         width: 100%;
     }
-
     #gerador-wizard-passo1 .wizard-header {
         justify-content: center;
     }
-    
     .dias-semana-container {
         flex-wrap: wrap;
         justify-content: center;
     }
-
     .dates-container, .form-row-aligned .toggle-group {
         width: 100%;
         justify-content: center;
     }
-
     #feriado-trabalha-toggle, #feriado-descontar-toggle {
         display: flex;
         width: 100%;
     }
-     #feriado-trabalha-toggle .toggle-btn, #feriado-descontar-toggle .toggle-btn {
+    #feriado-trabalha-toggle .toggle-btn, #feriado-descontar-toggle .toggle-btn {
         flex: 1;
         justify-content: center;
     }
-
     .focused-employee-view {
         display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 16px;
     }
-
     .shift-brushes-container {
         justify-content: center;
     }
-
     .nav-arrow {
         display: none;
     }
-
     #page-home {
-        padding-top: 32px;
+        padding-top: 16px;
         padding-left: 24px;
         padding-right: 24px;
     }

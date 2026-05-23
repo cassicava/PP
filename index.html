@@ -38,6 +38,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+    <script>
+        const geTheme = localStorage.getItem('ge_dark_mode');
+        if (geTheme === 'true' || (geTheme === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+
     <div id="activation-screen">
         <div class="activation-card">
             <span class="cat-lock-icon">🔒</span>
@@ -224,6 +231,7 @@
         <header id="main-header">
             <h1 id="page-title"></h1>
             <div class="header-right-group">
+                <button id="theme-toggle-btn" class="header-action-btn" title="Alternar Tema escuro/claro">🌙</button>
                 <button id="context-help-btn" style="display: none;">💡 Ajuda</button>
                 <div class="header-user-info">
                 </div>

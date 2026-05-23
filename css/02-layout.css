@@ -1,7 +1,7 @@
 :root {
   --sidebar-width-collapsed: 76px;
   --sidebar-width-expanded: 260px;
-  --header-height: 73px;
+  --header-height: 56px;
 }
 
 body {
@@ -18,23 +18,14 @@ body {
   display: flex;
   flex-direction: column;
   padding: 20px 10px;
-  
   background-color: rgba(255, 255, 255, 0.30); 
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border-radius: 32px;
-  
-  /* ANIMAÇÃO DA SIDEBAR (SEPARADA E SUAVE) */
-  /* 0.7s deixa bem macio, sem ser lento demais */
-  transition: width 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), 
-              transform 0.5s ease, 
-              filter 0.5s ease;
+  transition: width 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.5s ease, filter 0.5s ease;
   z-index: 50;
-  
-  /* Garante que o texto não quebre layout enquanto anima */
   overflow: hidden; 
   white-space: nowrap; 
 }
@@ -43,17 +34,14 @@ body {
   width: var(--sidebar-width-expanded);
 }
 
-/* --- TRAVAMENTO ABSOLUTO DA SIDEBAR --- */
-/* Quando a ajuda está ativa, estas regras ganham prioridade máxima */
 body.help-panel-active #sidebar,
 body.help-panel-active #sidebar:hover {
-    pointer-events: none !important;      /* Mouse atravessa a sidebar */
-    width: var(--sidebar-width-collapsed) !important; /* Força largura pequena */
+    pointer-events: none !important;
+    width: var(--sidebar-width-collapsed) !important;
     cursor: default !important;
-    background-color: rgba(255, 255, 255, 0.15) !important; /* Visualmente desativada */
+    background-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-/* Esconde textos imediatamente se travar */
 body.help-panel-active #sidebar .logo-full,
 body.help-panel-active #sidebar .tab-text {
     opacity: 0 !important;
@@ -100,7 +88,6 @@ body.help-panel-active #sidebar .logo-compact {
 
 #sidebar:hover .logo-full {
   opacity: 1;
-  /* Delay para o texto aparecer só depois que a barra abriu um pouco */
   transition: opacity 0.4s ease 0.2s; 
 }
 
@@ -159,7 +146,7 @@ main.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 32px 16px 32px;
+    padding: 12px 32px 0px 32px;
     margin-bottom: 0;
     height: var(--header-height);
     position: relative;
@@ -188,10 +175,10 @@ main.container {
 }
 
 .header-action-btn {
-    background: transparent;
-    border: none;
-    font-size: 1.6rem;
-    color: var(--muted);
+    background: #eef2ff;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    font-size: 1.2rem;
+    color: var(--brand);
     cursor: pointer;
     padding: 4px;
     border-radius: 50%;
@@ -204,16 +191,16 @@ main.container {
 }
 
 .header-action-btn:hover {
-    background-color: var(--bg);
-    color: var(--fg);
+    background-color: #e0e7ff;
+    border-color: rgba(59, 130, 246, 0.6);
     transform: scale(1.1) rotate(-8deg);
 }
 
 .page {
   display: none;
   flex-direction: column;
-  gap: 24px;
-  padding: 16px 32px 32px 32px;
+  gap: 16px;
+  padding: 0 32px 32px 32px;
   transition: padding 0.4s ease-in-out;
   min-width: 0;
 }
@@ -229,13 +216,13 @@ main.container {
 }
 
 #page-home {
-    padding-top: 24px;
+    padding-top: 0;
     padding-left: 32px;
     padding-right: 32px;
 }
 
 #page-home.fading-out {
-    padding-top: 24px;
+    padding-top: 0;
     padding-left: 32px;
     padding-right: 32px;
 }
@@ -455,7 +442,7 @@ main.container {
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin: 0 0 0 0;
+    margin: 0;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
 }
@@ -494,7 +481,7 @@ main.container {
     background-color: rgba(15, 23, 42, 0.9);
     color: #fff;
     padding: 8px 16px;
-    border-radius: 99px;
+    border-radius: 999px;
     font-weight: 600;
     font-size: 0.9rem;
     pointer-events: none;
@@ -533,13 +520,78 @@ main.container {
     grid-template-columns: 1fr 1fr;
 }
 
-@media (max-width: 768px) {
-    .home-progress-panel {
-        flex-direction: column;
-        align-items: stretch;
+@media (max-width: 1440px) {
+    .container {
+        width: calc(100% - var(--sidebar-width-collapsed) - 32px);
     }
-    .home-progress-visual {
-        width: 100%;
+    .page {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+    #page-home {
+        padding-left: 80px; 
+        padding-right: 80px;
+    }
+}
+
+@media (max-width: 992px) {
+    main.container {
+        margin-left: calc(var(--sidebar-width-collapsed) + 24px);
+        width: calc(100% - var(--sidebar-width-collapsed) - 24px);
+    }
+    #main-header, .page {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    #page-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width-collapsed: 70px; 
+    }
+    #sidebar {
+        top: 0;
+        left: 0;
+        height: 100vh;
+        border-radius: 0;
+        margin: 0;
+        border: none;
+        border-right: 1px solid var(--border);
+        background-color: rgba(255, 255, 255, 0.95);
+        width: var(--sidebar-width-collapsed);
+        padding: 12px 8px;
+        box-shadow: none;
+    }
+    #sidebar:hover {
+        width: var(--sidebar-width-collapsed); 
+    }
+    #sidebar:hover .logo-full,
+    #sidebar:hover .tab-text {
+        opacity: 0; 
+        display: none;
+    }
+    #sidebar:hover .logo-compact {
+        opacity: 1;
+    }
+    main.container {
+        margin-left: var(--sidebar-width-collapsed);
+        width: calc(100% - var(--sidebar-width-collapsed));
+        padding: 0;
+    }
+    #main-header, .page {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    #page-title {
+        font-size: 1.5rem;
+    }
+    #page-home {
+        padding-top: 0;
+        padding-left: 24px;
+        padding-right: 24px;
     }
 }
 

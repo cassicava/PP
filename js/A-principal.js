@@ -277,6 +277,18 @@ function updateTimelineProgress() {
     });
 }
 
+function getContrastColor(hexcolor) {
+    let hex = hexcolor.replace("#", "");
+    if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+    const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+    return (yiq >= 128) ? '#0f172a' : '#ffffff';
+}
+
 function renderShiftsForCargo(cargoId, escalasHoje, today) {
     const { turnos, funcionarios } = store.getState();
     const shiftsContainer = $("#status-hoje-shifts");
@@ -398,9 +410,11 @@ function renderShiftsForCargo(cargoId, escalasHoje, today) {
 
         const emptyPill = `<li style="color: var(--muted); box-shadow: none; opacity: 0.8; font-weight: normal;">Vazio</li>`;
 
+        const textColor = getContrastColor(turno.cor);
+
         block.innerHTML = `
             <div class="shift-block-header">
-                <span class="shift-badge" style="background-color: ${turno.cor}; color: #fff;">${turno.sigla}</span>
+                <span class="shift-badge" style="background-color: ${turno.cor}; color: ${textColor};">${turno.sigla}</span>
                 <span class="shift-time">${turno.inicio} - ${turno.fim}</span>
             </div>
             <div class="shift-block-body" style="background-color: ${turno.cor}20;">
@@ -794,6 +808,27 @@ function initMainApp() {
 
 function init() {
     setupGlobalAutocomplete();
+    
+    const themeToggleBtn = $("#theme-toggle-btn");
+    if (themeToggleBtn) {
+        const isDark = document.body.classList.contains('dark-mode');
+        themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+
+        themeToggleBtn.addEventListener('click', () => {
+            themeToggleBtn.classList.add('theme-spin-anim');
+            
+            setTimeout(() => {
+                document.body.classList.toggle('dark-mode');
+                const darkNow = document.body.classList.contains('dark-mode');
+                localStorage.setItem('ge_dark_mode', darkNow);
+                themeToggleBtn.textContent = darkNow ? '☀️' : '🌙';
+            }, 200); 
+
+            setTimeout(() => {
+                themeToggleBtn.classList.remove('theme-spin-anim');
+            }, 400); 
+        });
+    }
 
     window.addEventListener('mousemove', e => {
         document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
